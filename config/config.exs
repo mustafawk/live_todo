@@ -7,6 +7,19 @@
 # General application configuration
 import Config
 
+config :live_todo, :scopes,
+  user: [
+    default: true,
+    module: LiveTodo.Accounts.Scope,
+    assign_key: :current_scope,
+    access_path: [:user, :id],
+    schema_key: :user_id,
+    schema_type: :id,
+    schema_table: :users,
+    test_data_fixture: LiveTodo.AccountsFixtures,
+    test_setup_helper: :register_and_log_in_user
+  ]
+
 config :live_todo,
   ecto_repos: [LiveTodo.Repo],
   generators: [timestamp_type: :utc_datetime]
