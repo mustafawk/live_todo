@@ -51,4 +51,5 @@ defmodule LiveTodoWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug LiveTodoWeb.Router
+
 end
