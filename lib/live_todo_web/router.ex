@@ -11,6 +11,7 @@ defmodule LiveTodoWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_scope_for_user
+    plug LiveTodoWeb.Plugs.Locale, "en"
   end
 
   pipeline :api do
@@ -20,7 +21,17 @@ defmodule LiveTodoWeb.Router do
   scope "/", LiveTodoWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    live "/todos", TodoLive.Index, :index
+    live "/todos/new", TodoLive.Form, :new
+    live "/todos/:id", TodoLive.Show, :show
+    live "/todos/:id/edit", TodoLive.Form, :edit
+    live "/todo", TodoLive.Index, :index
+    get "/", PageController, :mustafa
+    get "/hello", PageController, :hibhai
+    get "/portfolio", MyPortfolioController, :index
+    get "/portfolio/:me", MyPortfolioController, :show
+
+
   end
 
   # Other scopes may use custom stacks.
